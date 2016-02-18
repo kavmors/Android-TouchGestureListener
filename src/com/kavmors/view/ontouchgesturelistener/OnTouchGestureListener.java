@@ -145,12 +145,24 @@ public class OnTouchGestureListener implements View.OnTouchListener {
 	}
 	
 	public static class Util {
+		/**
+		 * Calculate the distance of two points.
+		 * @param p0
+		 * @param p1
+		 * @return Distance in float
+		 */
 		public static float distance(PointF p0, PointF p1) {
 			float dx = p0.x - p1.x;
 			float dy = p0.y - p1.y;
 			return (float) Math.sqrt(dx*dx + dy*dy);
 		}
 		
+		/**
+		 * Calculate the center point of two points.
+		 * @param p0
+		 * @param p1
+		 * @return Coordinate of center point in PointF
+		 */
 		public static PointF center(PointF p0, PointF p1) {
 			float x = (p0.x + p1.x) / 2;
 			float y = (p0.y + p1.y) / 2;
