@@ -9,6 +9,7 @@ import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 
 /**
@@ -28,6 +29,7 @@ public class OnTouchGestureListener implements View.OnTouchListener {
     private boolean mLongClickable = true;
     private boolean mDblLongClickable = true;
     private boolean mMultiLongClickable = true;
+    private OnTouchListener mUserTouchListener = null;
 	
 	private enum Mode { NONE, DOWN, MOVE, UP, DBL_DOWN, DBL_MOVE, DBL_UP, MULTI_DOWN, MULTI_MOVE, MULTI_UP};
 	private Mode mMode = Mode.NONE;
@@ -130,6 +132,14 @@ public class OnTouchGestureListener implements View.OnTouchListener {
 		mMultiLongClickable = multiLongClickable;
 	}
 	
+	/**
+	 * Set an OnTouchListener for user
+	 * @param l The listener
+	 */
+	public void setUserTouchListener(OnTouchListener l) {
+		mUserTouchListener = l;
+	}
+	
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if (event.getPointerCount() < 2) {
@@ -140,6 +150,9 @@ public class OnTouchGestureListener implements View.OnTouchListener {
 			}
 		} else {
 			mMultiDetector.onTouch(event);
+		}
+		if (mUserTouchListener!=null) {
+			mUserTouchListener.onTouch(v, event);
 		}
 		return true;
 	}
