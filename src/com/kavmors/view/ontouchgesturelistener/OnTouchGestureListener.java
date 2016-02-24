@@ -335,7 +335,7 @@ public class OnTouchGestureListener implements View.OnTouchListener {
 		
 		public void continueEvent(MotionEvent e) {
 			if (e.getActionMasked() == MotionEvent.ACTION_UP) {
-				if (mMode == Mode.DOWN || mMode == Mode.MOVE) {
+				if (mMode == Mode.DOWN || mMode == Mode.MOVE || mMode == Mode.UP) {
 					mOnSingle.onUp(new PointF(e.getX(), e.getY()));
 					mMode = Mode.NONE;
 				}
