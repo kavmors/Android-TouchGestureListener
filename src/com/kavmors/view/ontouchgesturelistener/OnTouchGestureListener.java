@@ -81,7 +81,7 @@ public class OnTouchGestureListener implements View.OnTouchListener {
 		mSingleDetectorGesture = new SingleGestureListener();
 		mSingleDetector = new GestureDetector(mContext, mSingleDetectorGesture);
 		mMultiDetector = new MultiGestureDetector();
-		mHandler = new GestureHandler();
+		mHandler = new Handler(new GestureHandler());
 	}
 	
 	/**
@@ -183,13 +183,13 @@ public class OnTouchGestureListener implements View.OnTouchListener {
 		}
 	}
 	
-	private class GestureHandler extends Handler {
+	private class GestureHandler implements Handler.Callback {
 		GestureHandler() {
 			super();
 		}
 		
 		@Override
-		public void handleMessage(Message msg) {
+		public boolean handleMessage(Message msg) {
 			switch (msg.what) {
 			case DBL_LONG_PRESS:
 				mMode = Mode.DBL_UP;
@@ -201,6 +201,7 @@ public class OnTouchGestureListener implements View.OnTouchListener {
 				mOnMulti.onMultiLongClick(points[0], points[1]);
 				break;
 			}
+			return true;
 		}
 	}
 	
