@@ -1,4 +1,4 @@
-package com.kavmors.view.ontouchgesturelistener;
+package com.kavmors.view.widget;
 
 import android.content.Context;
 import android.graphics.PointF;

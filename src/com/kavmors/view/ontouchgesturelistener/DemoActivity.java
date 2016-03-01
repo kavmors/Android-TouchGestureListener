@@ -1,5 +1,7 @@
 package com.kavmors.view.ontouchgesturelistener;
 
+import com.kavmors.view.widget.OnTouchGestureListener;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
