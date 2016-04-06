@@ -143,9 +143,7 @@ public class OnTouchGestureListener implements OnTouchListener {
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if (event.getPointerCount() < 2) {
-			if (mSingleDetector.onTouchEvent(event)) {
-				return true;
-			} else {
+			if (!mSingleDetector.onTouchEvent(event)) {
 				mSingleDetectorGesture.continueEvent(event);
 			}
 		} else {
